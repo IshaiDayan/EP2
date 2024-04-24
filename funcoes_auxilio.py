@@ -4,11 +4,23 @@ def cria_mapa(N):
        matriz.append([' ']*(N))
     return matriz
 
+def posicao_suporta(mapa,blocos,linha,coluna,vh):
+    if vh == "h":
+        if (coluna)+blocos > len(mapa[linha]):
+            return False
+    else:
+        if (linha)+blocos > len(mapa):
+            return False
 
-
-
-
-
+    for i in range(blocos):
+        if vh == "h":
+            if mapa[linha][coluna+i] == "N":
+                return False
+        else:
+            if mapa[linha+i][coluna] == "N":
+                return False
+    
+    return True
 
 
 
