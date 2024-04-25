@@ -55,6 +55,8 @@ for tipo,qtd in navios_jg.items():
             linha = int(input("Informe a Linha:"))-1
             ori = input("Informe a Orientação:")
             pode = funcoes_auxilio.posicao_suporta(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
+            if not pode:
+                print("Local Inválido. Tente novamente")
 
         mapajg = funcoes_auxilio.aloca_navio_jogador(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
         print("Navio alocado!")
@@ -67,6 +69,13 @@ time.sleep(2)
 
 comeca = random.choice(["pc","jg"])
 
-#verifica_navio = True
-#while verifica_navio == True:
-#    if comeca == "pc":
+funcionando = True
+while funcionando == True:
+    mapa_pc,mapa_jg,funcionando = funcoes_auxilio.rodada(comeca,mapapc,mapajg,funcionando)
+    funcoes_auxilio.printar_mapas(mapapc,mapajg)
+
+print('acabou')
+    
+        
+
+

@@ -93,18 +93,20 @@ def printar_mapas(matriz_pc,matriz_jg):
     print("   A   B   C   D   E   F   G   H   I   J          A   B   C   D   E   F   G   H   I   J")
 
 import time
-def rodada(comeca,mapa_pc,mapa_jg):
+def rodada(comeca,mapa_pc,mapa_jg,funcionando):
     if comeca == "pc":
         novo = False
         while novo == False:
-            ataqueLinha = random.choice(0,len(mapa_jg)-1)
-            ataqueColuna = random.choice(0,len(mapa_jg)-1)
+            ataqueLinha = random.randint(0,len(mapa_jg)-1)
+            ataqueColuna = random.randint(0,len(mapa_jg)-1)
             novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
             if mapa_jg[ataqueLinha][ataqueColuna] == "N":
                 mapa_jg[ataqueLinha][ataqueColuna] = "X"
             elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
-        
+
+        funcionando = Checar_se_acabou(funcionando,mapa_jg)
+
         print("Agora é sua vez!")
         time.sleep(1)
         novo = False
@@ -119,6 +121,7 @@ def rodada(comeca,mapa_pc,mapa_jg):
         elif mapa_pc[linha][coluna] == " ":
             mapa_pc[linha][coluna] == "A"
 
+        funcionando = Checar_se_acabou(funcionando,mapa_pc)
 
     else:
         print("Sua vez!")
@@ -135,17 +138,27 @@ def rodada(comeca,mapa_pc,mapa_jg):
         elif mapa_pc[linha][coluna] == " ":
             mapa_pc[linha][coluna] == "A"
         
-
+        funcionando = Checar_se_acabou(funcionando,mapa_pc)
         novo = False
         while novo == False:
-            ataqueLinha = random.choice(0,len(mapa_jg)-1)
-            ataqueColuna = random.choice(0,len(mapa_jg)-1)
+            ataqueLinha = random.randint(0,len(mapa_jg)-1)
+            ataqueColuna = random.randint(0,len(mapa_jg)-1)
             novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
             if mapa_jg[ataqueLinha][ataqueColuna] == "N":
                 mapa_jg[ataqueLinha][ataqueColuna] = "X"
             elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
 
-    return mapa_pc,mapa_jg
+        funcionando = Checar_se_acabou(funcionando,mapa_jg)
+
+    return mapa_pc,mapa_jg,funcionando
 
 
+def Checar_se_acabou(funcionando,mapa):
+    for linha in mapa:
+            if "N" in linha:
+                funcionando = True
+            else:
+                funcionando = False
+    
+    return funcionando
