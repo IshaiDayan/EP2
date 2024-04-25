@@ -63,9 +63,10 @@ time.sleep(2)
 print("Iniciando a Batalha Naval!")
 time.sleep(1)
 print("Prepare-se...")
-time.sleep(1)
-for j in range(5):
-    print("{}".format(J+1))
-    time.sleep(1)
+time.sleep(2)
 
+comeca = random.choice(["pc","jg"])
 
+#verifica_navio = True
+#while verifica_navio == True:
+#    if comeca == "pc":

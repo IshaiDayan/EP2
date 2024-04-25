@@ -92,3 +92,60 @@ def printar_mapas(matriz_pc,matriz_jg):
         print(linha)
     print("   A   B   C   D   E   F   G   H   I   J          A   B   C   D   E   F   G   H   I   J")
 
+import time
+def rodada(comeca,mapa_pc,mapa_jg):
+    if comeca == "pc":
+        novo = False
+        while novo == False:
+            ataqueLinha = random.choice(0,len(mapa_jg)-1)
+            ataqueColuna = random.choice(0,len(mapa_jg)-1)
+            novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
+            if mapa_jg[ataqueLinha][ataqueColuna] == "N":
+                mapa_jg[ataqueLinha][ataqueColuna] = "X"
+            elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
+                mapa_jg[ataqueLinha][ataqueColuna] = "A"
+        
+        print("Agora é sua vez!")
+        time.sleep(1)
+        novo = False
+        while novo == False:
+            linha = int(input("Qual linha você quer atacar?"))
+            coluna = ord(input("Qual coluna você quer atacar?"))-ord("A")
+            novo = mapa_pc[linha][coluna] == "N" or  mapa_pc[linha][coluna] == " "
+            if novo == False:
+                print("Ataque inválido, tente novamente.")
+        if mapa_pc[linha][coluna] == "N":
+            mapa_pc[linha][coluna] == "X"
+        elif mapa_pc[linha][coluna] == " ":
+            mapa_pc[linha][coluna] == "A"
+
+
+    else:
+        print("Sua vez!")
+        time.sleep(1)
+        novo = False
+        while novo == False:
+            linha = int(input("Qual linha você quer atacar?"))
+            coluna = ord(input("Qual coluna você quer atacar?"))-ord("A")
+            novo = mapa_pc[linha][coluna] == "N" or  mapa_pc[linha][coluna] == " "
+            if novo == False:
+                print("Ataque inválido, tente novamente.")
+        if mapa_pc[linha][coluna] == "N":
+            mapa_pc[linha][coluna] == "X"
+        elif mapa_pc[linha][coluna] == " ":
+            mapa_pc[linha][coluna] == "A"
+        
+
+        novo = False
+        while novo == False:
+            ataqueLinha = random.choice(0,len(mapa_jg)-1)
+            ataqueColuna = random.choice(0,len(mapa_jg)-1)
+            novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
+            if mapa_jg[ataqueLinha][ataqueColuna] == "N":
+                mapa_jg[ataqueLinha][ataqueColuna] = "X"
+            elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
+                mapa_jg[ataqueLinha][ataqueColuna] = "A"
+
+    return mapa_pc,mapa_jg
+
+
