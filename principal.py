@@ -57,6 +57,15 @@ for tipo,qtd in navios_jg.items():
             pode = funcoes_auxilio.posicao_suporta(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
 
         mapajg = funcoes_auxilio.aloca_navio_jogador(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
-
+        print("Navio alocado!")
         funcoes_auxilio.printar_mapas(mapapc,mapajg)
+time.sleep(2)
+print("Iniciando a Batalha Naval!")
+time.sleep(1)
+print("Prepare-se...")
+time.sleep(1)
+for j in range(5):
+    print("{}".format(J+1))
+    time.sleep(1)
+
 
