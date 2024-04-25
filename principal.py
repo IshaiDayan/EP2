@@ -11,7 +11,15 @@ time.sleep(3)
 print("O computador está alocando os navios de guerra do país {0}".format(escolhadopc))
 time.sleep(2)
 mapapc = funcoes_auxilio.cria_mapa(10)
-mapapc = funcoes_auxilio.aloca_navios(mapapc,list(constantes.PAISES[escolhadopc].values()))
+
+navios_pc = constantes.PAISES[escolhadopc]
+lista_blocos_pc = []
+for tipo,qtd in navios_pc.items():
+    for i in range(qtd):
+        lista_blocos_pc.append(constantes.CONFIGURACAO[tipo])
+
+mapapc = funcoes_auxilio.aloca_navios(mapapc,lista_blocos_pc)
+
 mapajg = funcoes_auxilio.cria_mapa(10)
 #funcoes_auxilio.printar_mapas(mapapc,mapajg)
 print("O computador já está em posição de batalha!")
@@ -29,3 +37,26 @@ print("Você escolheu o país {0}".format(escolhadojg))
 print("Agora é sua vez de alocar seus navios de guerra!")
 time.sleep(1)
 funcoes_auxilio.printar_mapas(mapapc,mapajg)
+time.sleep(1)
+
+
+navios_jg = constantes.PAISES[escolhadojg]
+lista_blocos_jg = []
+
+for tipo,qtd in navios_jg.items():
+    for i in range(qtd):
+        lista_blocos_pc.append(constantes.CONFIGURACAO[tipo])
+
+        print("Alocar: {0} ({1} blocos)".format(tipo,constantes.CONFIGURACAO[tipo]))
+
+        pode = False
+        while pode == False:
+            letra = input("Informe a Letra:")
+            linha = int(input("Informe a Linha:"))-1
+            ori = input("Informe a Orientação:")
+            pode = funcoes_auxilio.posicao_suporta(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
+
+        mapajg = funcoes_auxilio.aloca_navio_jogador(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
+
+        funcoes_auxilio.printar_mapas(mapapc,mapajg)
+

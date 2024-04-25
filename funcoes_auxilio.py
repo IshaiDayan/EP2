@@ -27,6 +27,7 @@ def posicao_suporta(mapa,blocos,linha,coluna,vh):
 
 def aloca_navios(mapa,listablocos):
     for i in range(len(listablocos)):
+
         pode = False
         while pode == False:
             linha = random.randint(0, (len(mapa)-1))
@@ -57,7 +58,7 @@ def foi_derrotado(matriz):
 
 def printar_mapas(matriz_pc,matriz_jg):
     print("           Mapa do Computador                                  Seu Mapa")            
-    print("   A   B   C   D   E   F   G   H   I   J         A   B   C   D   E   F   G   H   I   J")
+    print("   A   B   C   D   E   F   G   H   I   J          A   B   C   D   E   F   G   H   I   J")
     for lista_idx in range(len(matriz_pc)):
         linha = ""
         linha+=str(lista_idx+1)
@@ -89,5 +90,5 @@ def printar_mapas(matriz_pc,matriz_jg):
         linha+=" "+str(lista_idx+1)
 
         print(linha)
-    print("   A   B   C   D   E   F   G   H   I   J         A   B   C   D   E   F   G   H   I   J")
+    print("   A   B   C   D   E   F   G   H   I   J          A   B   C   D   E   F   G   H   I   J")
 
