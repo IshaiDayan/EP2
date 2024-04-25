@@ -1,4 +1,5 @@
 import random
+import constantes
 
 def cria_mapa(N):
     matriz = []
@@ -32,14 +33,18 @@ def aloca_navios(mapa,listablocos):
             coluna = random.randint(0, (len(mapa)-1))
             orientacao = random.choice(['h', 'v'])
             pode = posicao_suporta(mapa,listablocos[i],linha,coluna,orientacao)
-        for x in range(listablocos[i]):
-            if orientacao == "h":
-                mapa[linha][coluna+x] = "N"
-            else:
-                mapa[linha+x][coluna] = "N"
+
+        mapa = aloca_navio_jogador(mapa,listablocos[i],linha,coluna,orientacao)
+
     return mapa
 
-
+def aloca_navio_jogador(mapa,navio,linha,coluna,orientacao):
+    for x in range(navio):
+        if orientacao == "h":
+            mapa[linha][coluna+x] = "N"
+        else:
+            mapa[linha+x][coluna] = "N"
+    return mapa
 
 def foi_derrotado(matriz):
     for z in matriz:
@@ -50,16 +55,23 @@ def foi_derrotado(matriz):
 
 
 
-def printar_mapas(matriz1,matriz2):
+def printar_mapas(matriz_pc,matriz_jg):
+    print("           Mapa do Computador                                  Seu Mapa")            
     print("   A   B   C   D   E   F   G   H   I   J         A   B   C   D   E   F   G   H   I   J")
-    for lista_idx in range(len(matriz1)):
+    for lista_idx in range(len(matriz_pc)):
         linha = ""
         linha+=str(lista_idx+1)
-        for elem in range(len(matriz1[lista_idx])):
-            if lista_idx == 9 and elem == 9:
-                linha+=("  "+(matriz1[lista_idx][elem]))
+        for elem in range(len(matriz_pc[lista_idx])):
+            if matriz_pc[lista_idx][elem] == "X":
+                if lista_idx == 9 and elem == 9:
+                    linha+=("  "+(matriz_pc[lista_idx][elem]))
+                else:
+                    linha+=("   "+(matriz_pc[lista_idx][elem]))
             else:
-                linha+=("   "+(matriz1[lista_idx][elem]))
+                if lista_idx == 9 and elem == 9:
+                    linha+=("  "+(" "))
+                else:
+                    linha+=("   "+(" "))
 
         linha+=" "+str(lista_idx+1)
         if lista_idx == 9:
@@ -69,11 +81,11 @@ def printar_mapas(matriz1,matriz2):
         
         linha+=str(lista_idx+1)
         
-        for elem in range(len(matriz2[lista_idx])):
+        for elem in range(len(matriz_jg[lista_idx])):
             if lista_idx == 9 and elem == 9:
-                linha+=("  "+(matriz2[lista_idx][elem]))
+                linha+=("  "+(matriz_jg[lista_idx][elem]))
             else:
-                linha+=("   "+(matriz2[lista_idx][elem]))
+                linha+=("   "+(matriz_jg[lista_idx][elem]))
         linha+=" "+str(lista_idx+1)
 
         print(linha)
