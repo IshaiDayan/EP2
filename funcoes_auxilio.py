@@ -1,3 +1,5 @@
+import random
+
 def cria_mapa(N):
     matriz = []
     for x in range(N):
@@ -22,8 +24,20 @@ def posicao_suporta(mapa,blocos,linha,coluna,vh):
     
     return True
 
-
-
+def aloca_navios(mapa,listablocos):
+    for i in range(len(listablocos)):
+        pode = False
+        while pode == False:
+            linha = random.randint(0, (len(mapa)-1))
+            coluna = random.randint(0, (len(mapa)-1))
+            orientacao = random.choice(['h', 'v'])
+            pode = posicao_suporta(mapa,listablocos[i],linha,coluna,orientacao)
+        for x in range(listablocos[i]):
+            if orientacao == "h":
+                mapa[linha][coluna+x] = "N"
+            else:
+                mapa[linha+x][coluna] = "N"
+    return mapa
 
 
 
