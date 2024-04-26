@@ -77,7 +77,7 @@ while funcionando == True:
 funcionando_jg = funcoes_auxilio.Checar_se_acabou(True,mapa_jg)
 funcionando_pc = funcoes_auxilio.Checar_se_acabou(True,mapa_pc)
 
-text_final = "Acabou. " + funcionando_jg * "Você venceu!" + funcionando_pc * "O Computador venceu!"
+text_final = "Acabou. " +  "Você venceu!" + funcionando_pc * "O Computador venceu!"
 print(text_final)
     
         
