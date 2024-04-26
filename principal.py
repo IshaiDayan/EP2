@@ -74,7 +74,11 @@ while funcionando == True:
     mapa_pc,mapa_jg,funcionando = funcoes_auxilio.rodada(comeca,mapapc,mapajg,funcionando)
     funcoes_auxilio.printar_mapas(mapapc,mapajg)
 
-print('acabou')
+funcionando_jg = funcoes_auxilio.Checar_se_acabou(True,mapa_jg)
+funcionando_pc = funcoes_auxilio.Checar_se_acabou(True,mapa_pc)
+
+text_final = "Acabou. " + funcionando_jg * "Você venceu!" + funcionando_pc * "O Computador venceu!"
+print(text_final)
     
         
 
