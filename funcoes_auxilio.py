@@ -201,4 +201,4 @@ def Checar_se_acabou(funcionando,mapa):
             else:
                 funcionando = False
     
-    return funcionand
+    return funcionando
