@@ -32,8 +32,18 @@ for w in constantes.PAISES:
         espacos = " "*(12-len(q))
         print (q+espacos,':',constantes.PAISES[w][q])
 
-escolhadojg = input("Qual a nação da sua frota?")
+
+pode_escolha_jg = False
+while pode_escolha_jg == False:
+    escolhadojg = input("Qual a nação da sua frota?")
+    if escolhadojg in constantes.PAISES.keys():
+        pode_escolha_jg = True
+    else:
+        print("País inválido. Escolha novamente. (Dica: Talvez você esteja digitando errado. Copie exatamente o país da forma que você o viu)")
+
+
 print("Você escolheu o país {0}".format(escolhadojg))
+time.sleep(1)
 print("Agora é sua vez de alocar seus navios de guerra!")
 time.sleep(1)
 funcoes_auxilio.printar_mapas(mapapc,mapajg)
@@ -49,11 +59,29 @@ for tipo,qtd in navios_jg.items():
 
         print("Alocar: {0} ({1} blocos)".format(tipo,constantes.CONFIGURACAO[tipo]))
 
+        
         pode = False
         while pode == False:
-            letra = input("Informe a Letra:")
-            linha = int(input("Informe a Linha:"))-1
-            ori = input("Informe a Orientação:")
+            letra = input("Informe a Letra:").upper()
+            if letra not in constantes.Letras:
+                print("Coluna Invalida. Tente novamente.")
+                continue
+            linha = (input("Informe a Linha:"))
+            if linha.isnumeric() and int(linha) <= 10 and int(linha) >= 1:
+                pass
+            else:
+                print("Linha Invalida. Tente novamente.")
+                continue
+            linha = int(linha)-1
+            
+            podevh = False
+            while podevh == False:
+                ori = input("Informe a Orientação:").lower()
+                if ori in ["v",'h']:
+                    podevh = True
+                else:
+                    print("Orientação inválida, tente novamente.")
+            
             pode = funcoes_auxilio.posicao_suporta(mapajg,constantes.CONFIGURACAO[tipo],linha,int(ord(letra)-ord("A")),ori)
             if not pode:
                 print("Local Inválido. Tente novamente")
@@ -80,6 +108,3 @@ funcionando_pc = funcoes_auxilio.Checar_se_acabou(True,mapa_pc)
 text_final = "Acabou. " + funcionando_jg * "Você venceu!" + funcionando_pc * "O Computador venceu!"
 print(text_final)
     
-        
-
-

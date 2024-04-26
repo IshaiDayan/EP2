@@ -79,7 +79,7 @@ def printar_mapas(matriz_pc,matriz_jg):
                     linha+=("   "+"\u001b[34m"+(matriz_pc[lista_idx][elem])+"\u001b[0m")
                    
             else:
-                if lista_idx == 9 and elem == 9:
+                if lista_idx == 9 and elem == 0:
                     linha+=("  "+(" "))
                 else:
                     linha+=("   "+(" "))
@@ -99,7 +99,7 @@ def printar_mapas(matriz_pc,matriz_jg):
                 
                 else:
                     linha+=("   "+"\u001b[31m"+(matriz_jg[lista_idx][elem])+"\u001b[0m")
-            if matriz_jg[lista_idx][elem] == "A":
+            elif matriz_jg[lista_idx][elem] == "A":
                 if lista_idx == 9 and elem == 0:
                     linha+=("  "+"\u001b[34m"+(matriz_jg[lista_idx][elem])+"\u001b[0m")
                 
@@ -121,6 +121,7 @@ def printar_mapas(matriz_pc,matriz_jg):
 import time
 def rodada(comeca,mapa_pc,mapa_jg,funcionando):
     if comeca == "pc":
+        print("Computador Jogando...")
         novo = False
         while novo == False:
             ataqueLinha = random.randint(0,len(mapa_jg)-1)
@@ -128,30 +129,41 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
             if mapa_jg[ataqueLinha][ataqueColuna] == "N":
                 mapa_jg[ataqueLinha][ataqueColuna] = "X"
+                print("BOOOOOOM!!! O computador acertou um navio!")
             elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
+                print("ERROOOU! O tiro caiu na água!")
 
         funcionando = Checar_se_acabou(funcionando,mapa_jg)
-        print("Computador Jogando...")
+        
         time.sleep(2)
         print("Agora é sua vez!")
         time.sleep(1)
         novo = False
         while novo == False:
-            coluna = ord(input("Qual coluna você quer atacar?"))-ord("A")
+            coluna = input("Qual coluna você quer atacar?").upper()
+            if coluna not in constantes.Letras:
+                print("Coluna Invalida. Tente novamente.")
+                continue
             linha = input("Qual linha você quer atacar?")
-            if ord(linha) < ord('0') or ord(linha) > ord('9'):
+            if linha.isnumeric() and int(linha) <= 10 and int(linha) >= 1:
+                pass
+            
+            else:
                 print("Linha Invalida. Tente novamente.")
                 continue
 
             linha = int(linha)-1
+            coluna = ord(coluna)-ord("A")
             novo = mapa_pc[linha][coluna] == "N" or  mapa_pc[linha][coluna] == " "
             if novo == False:
                 print("Ataque inválido, tente novamente.")
         if mapa_pc[linha][coluna] == "N":
             mapa_pc[linha][coluna] = "X"
+            print("BOOOOOOM!!! Você acertou um navio!")
         elif mapa_pc[linha][coluna] == " ":
             mapa_pc[linha][coluna] = "A"
+            print("ERROOOU! O tiro caiu na água!")
 
         funcionando = Checar_se_acabou(funcionando,mapa_pc)
 
@@ -160,32 +172,44 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
         time.sleep(1)
         novo = False
         while novo == False:
-            coluna = ord(input("Qual coluna você quer atacar?"))-ord("A")
+            coluna = input("Qual coluna você quer atacar?").upper()
+            if coluna not in constantes.Letras:
+                print("Coluna Invalida. Tente novamente.")
+                continue
             linha = input("Qual linha você quer atacar?")
-            if ord(linha) < ord('0') or ord(linha) > ord('9'):
+            if linha.isnumeric() and int(linha) <= 10 and int(linha) >= 1:
+                pass
+            
+            else:
                 print("Linha Invalida. Tente novamente.")
                 continue
             linha = int(linha)-1
+            coluna = ord(coluna)-ord("A")
             novo = mapa_pc[linha][coluna] == "N" or  mapa_pc[linha][coluna] == " "
             if novo == False:
                 print("Ataque inválido, tente novamente.")
         if mapa_pc[linha][coluna] == "N":
             mapa_pc[linha][coluna] = "X"
+            print("BOOOOOOM!!! Você acertou um navio!")
         elif mapa_pc[linha][coluna] == " ":
             mapa_pc[linha][coluna] = "A"
+            print("ERROOOU! O tiro caiu na água!")
         
         funcionando = Checar_se_acabou(funcionando,mapa_pc)
         novo = False
+        print("Computador Jogando...")
         while novo == False:
             ataqueLinha = random.randint(0,len(mapa_jg)-1)
             ataqueColuna = random.randint(0,len(mapa_jg)-1)
             novo = mapa_jg[ataqueLinha][ataqueColuna] == "N" or  mapa_jg[ataqueLinha][ataqueColuna] == " "
             if mapa_jg[ataqueLinha][ataqueColuna] == "N":
                 mapa_jg[ataqueLinha][ataqueColuna] = "X"
+                print("BOOOOOOM!!! O computador acertou um navio!")
             elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
+                print("ERROOOU! O tiro caiu na água!")
 
-        print("Computador Jogando...")
+        
         time.sleep(2)
         
         funcionando = Checar_se_acabou(funcionando,mapa_jg)

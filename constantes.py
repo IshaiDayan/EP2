@@ -62,3 +62,5 @@ CORES = {
     'cyan': '\u001b[36m',
     'white': '\u001b[37m'
 }
+
+Letras = ['A','B','C','D','E','F','G','H','I','J']
