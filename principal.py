@@ -69,7 +69,7 @@ time.sleep(2)
 
 comeca = random.choice(["pc","jg"])
 
-funcionando = True
+funcionando = False
 while funcionando == True:
     mapa_pc,mapa_jg,funcionando = funcoes_auxilio.rodada(comeca,mapapc,mapajg,funcionando)
     funcoes_auxilio.printar_mapas(mapapc,mapajg)
