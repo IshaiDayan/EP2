@@ -131,7 +131,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             elif mapa_jg[ataqueLinha][ataqueColuna] == " ":
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
 
-        
+        funcionando = Checar_se_acabou(funcionando,mapa_jg)
         print("Computador Jogando...")
         time.sleep(2)
         print("Agora é sua vez!")
