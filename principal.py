@@ -4,6 +4,9 @@ import random
 import time
 import funcoes_auxilio
 
+
+
+
 escolhadopc = random.choice(list(constantes.PAISES.keys()))
 
 print("Iniciando o Jogo!")

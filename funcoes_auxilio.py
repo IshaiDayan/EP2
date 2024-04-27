@@ -1,6 +1,7 @@
 import random
 import constantes
 
+
 def cria_mapa(N):
     matriz = []
     for x in range(N):
@@ -166,7 +167,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             print("ERROOOU! O tiro caiu na água!")
 
         funcionando = Checar_se_acabou(funcionando,mapa_pc)
-
+        time.sleep(2)
     else:
         print("Sua vez!")
         time.sleep(1)
@@ -196,6 +197,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             print("ERROOOU! O tiro caiu na água!")
         
         funcionando = Checar_se_acabou(funcionando,mapa_pc)
+        time.sleep(2)
         novo = False
         print("Computador Jogando...")
         while novo == False:
