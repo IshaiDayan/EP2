@@ -135,7 +135,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
                 mapa_jg[ataqueLinha][ataqueColuna] = "A"
                 print("ERROOOU! O tiro caiu na água!")
 
-        funcionando = Checar_se_acabou(funcionando,mapa_jg)
+        funcionando_jg = Checar_se_acabou(funcionando,mapa_jg)
         
         time.sleep(2)
         print("Agora é sua vez!")
@@ -166,7 +166,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             mapa_pc[linha][coluna] = "A"
             print("ERROOOU! O tiro caiu na água!")
 
-        funcionando = Checar_se_acabou(funcionando,mapa_pc)
+        funcionando_pc = Checar_se_acabou(funcionando,mapa_pc)
         time.sleep(2)
     else:
         print("Sua vez!")
@@ -196,7 +196,7 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
             mapa_pc[linha][coluna] = "A"
             print("ERROOOU! O tiro caiu na água!")
         
-        funcionando = Checar_se_acabou(funcionando,mapa_pc)
+        funcionando_pc = Checar_se_acabou(funcionando,mapa_pc)
         time.sleep(2)
         novo = False
         print("Computador Jogando...")
@@ -214,8 +214,9 @@ def rodada(comeca,mapa_pc,mapa_jg,funcionando):
         
         time.sleep(2)
         
-        funcionando = Checar_se_acabou(funcionando,mapa_jg)
-
+        funcionando_jg = Checar_se_acabou(funcionando,mapa_jg)
+    
+    funcionando = funcionando_jg and funcionando_pc
     return mapa_pc,mapa_jg,funcionando
 
 
